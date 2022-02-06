@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "102904968100",
+    "project_id": "habi-ventaneros",
+    "storage_bucket": "habi-ventaneros.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102904968100:android:b58824cb553354fa57c731",
+        "android_client_info": {
+          "package_name": "hermes_habi.com.hermes_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102904968100-8068javgid8mimnpsg6fmr4df8l605kp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hermes_habi.com.hermes_app",
+            "certificate_hash": "be5d9c19fd82f6268ede3fb0cd67d15f5a3bb7b3"
+          }
+        },
+        {
+          "client_id": "102904968100-l4qng5ful6pv9cu11t8r5psmrn4df931.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrwMGUZ_iN4qWtWTO6v0UMSSZdE9nECdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102904968100-l4qng5ful6pv9cu11t8r5psmrn4df931.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

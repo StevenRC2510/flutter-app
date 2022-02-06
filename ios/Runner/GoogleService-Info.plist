@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>102904968100-i6nqekn47mq05ub2vmru25hqorb1vqmm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.102904968100-i6nqekn47mq05ub2vmru25hqorb1vqmm</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>102904968100-8068javgid8mimnpsg6fmr4df8l605kp.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBTbD8DuicfBkOdISjfeum5qLVVEEIm17c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>102904968100</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>hermeshabi.com.hermesapp</string>
+	<key>PROJECT_ID</key>
+	<string>habi-ventaneros</string>
+	<key>STORAGE_BUCKET</key>
+	<string>habi-ventaneros.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:102904968100:ios:d7d80ab0e31cf22157c731</string>
+</dict>
+</plist>
