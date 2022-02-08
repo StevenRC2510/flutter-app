@@ -12,7 +12,6 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
-
   @override
   State createState() {
     return _SignInScreen();
@@ -33,8 +32,12 @@ class _SignInScreen extends State<SignInScreen> {
   final COGNITO_POOL_URL = 'mx-habi-google-users-dev';
   final CLIENT_SECRET = '1p4np2cli46emihtu3uvups94v88653lgcrt4v679fuu4ic85f2c';
 
+  bool show = true;
 
-  final bool show = true;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,41 +45,42 @@ class _SignInScreen extends State<SignInScreen> {
     return _handleCurrentSession();
   }
 
-  void onTapLoginButton(){
-
+  void onTapLoginButton() {
+    setState(() {
+      show = false;
+    });
   }
 
-
-  Widget _handleCurrentSession(){
-    if(show) {
-      return signInGoogleUI();
-    } else {
-      return const HermesApp();
+  dynamic _handleCurrentSession() {
+    if (!show) {
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context) => const HermesApp()));
+      });
     }
+    return signInGoogleUI();
   }
 
   Widget signInGoogleUI() {
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
-        children:  <Widget>[
+        children: <Widget>[
           //Container(color: Colors.white),
           const GradientBackground(title: ""),
           Positioned(
-              left: -1.0,
-              top: -1.0,
-              child:
-                Image.asset(decorationStartPath,  height: 200.0),
+            left: -1.0,
+            top: -1.0,
+            child: Image.asset(decorationStartPath, height: 200.0),
           ),
           Positioned(
             right: -1.0,
             bottom: -1.0,
-            child:
-            Image.asset(decorationEndPath, height: 180.0),
+            child: Image.asset(decorationEndPath, height: 180.0),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children:  <Widget>[
+            children: <Widget>[
               SvgPicture.asset(
                 flagColombia,
                 width: 300.0,
@@ -88,8 +92,9 @@ class _SignInScreen extends State<SignInScreen> {
                 height: 50.0,
               ),
               Image.asset(logoPath),
-              Button(text: "Login with Gmail",
-                onPressed: () => onTapLoginButton(),
+              Button(
+                text: "Login with Gmail",
+                onPressed: onTapLoginButton,
                 width: 300.0,
                 height: 50.0,
               )
