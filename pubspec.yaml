@@ -38,6 +38,7 @@ dependencies:
   image_picker: ^0.8.4+5
   google_sign_in: ^5.2.3
   http: ^0.13.4
+  flutter_svg: ^1.0.3
 
 
 dev_dependencies:
@@ -97,6 +98,8 @@ flutter:
     - assets/img/logo_habi.png
     - assets/img/login_decoration_start.png
     - assets/img/login_decoration_end.png
+    - assets/img/flag_colombia.svg
+    - assets/img/flag_mexico.svg
   fonts:
     - family: Monserrat
       fonts:

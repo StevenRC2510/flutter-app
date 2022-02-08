@@ -5,6 +5,7 @@ import 'package:hermes_app/widgets/button.dart';
 import 'package:hermes_app/User/bloc/bloc_user.dart';
 import 'package:hermes_app/widgets/header_gradient.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hermes_app/widgets/gradient_background.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
@@ -24,12 +25,16 @@ class _SignInScreen extends State<SignInScreen> {
   String logoPath = "assets/img/logo_habi.png";
   String decorationStartPath = "assets/img/login_decoration_start.png";
   String decorationEndPath = "assets/img/login_decoration_end.png";
+  String flagColombia = "assets/img/flag_colombia.svg";
+  String flagMexico = "assets/img/flag_mexico.svg";
 
   final COGNITO_CLIENT_ID = '7f86gu6fq8813e9ac23610lt2g';
   final COGNITO_POOL_ID = 'us-east-1_V5yhvlb7e';
   final COGNITO_POOL_URL = 'mx-habi-google-users-dev';
   final CLIENT_SECRET = '1p4np2cli46emihtu3uvups94v88653lgcrt4v679fuu4ic85f2c';
-  final bool show = false;
+
+
+  final bool show = true;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +51,7 @@ class _SignInScreen extends State<SignInScreen> {
     if(show) {
       return signInGoogleUI();
     } else {
-      return HermesApp();
+      return const HermesApp();
     }
   }
 
@@ -72,6 +77,16 @@ class _SignInScreen extends State<SignInScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children:  <Widget>[
+              SvgPicture.asset(
+                flagColombia,
+                width: 300.0,
+                height: 50.0,
+              ),
+              SvgPicture.asset(
+                flagMexico,
+                width: 300.0,
+                height: 50.0,
+              ),
               Image.asset(logoPath),
               Button(text: "Login with Gmail",
                 onPressed: () => onTapLoginButton(),

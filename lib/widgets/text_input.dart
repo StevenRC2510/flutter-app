@@ -19,7 +19,7 @@ class TextInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+        //padding: const EdgeInsets.only(right: 20.0, left: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

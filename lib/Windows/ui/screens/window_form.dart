@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:hermes_app/widgets/button.dart';
+import 'package:hermes_app/widgets/dropdown.dart';
 import 'package:hermes_app/widgets/text_input.dart';
 import 'package:hermes_app/widgets/header_gradient.dart';
 
@@ -25,24 +26,25 @@ class _AddWindowScreen extends State<AddWindowScreen> {
 
     void onSubmit() {}
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            HeaderGradient(height: 160.0),
-            const Text(
-              "Crear inmueble",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30.0,
-                  fontFamily: "Lato",
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        /*
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              HeaderGradient(height: 160.0),
+              const Text(
+                "Crear inmueble",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30.0,
+                    fontFamily: "Lato",
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          /*
         TextInput(
           hintText: "Select ciudad",
           inputType: TextInputType.text,
@@ -55,20 +57,40 @@ class _AddWindowScreen extends State<AddWindowScreen> {
           maxLines: 1,
           controller: _controllerTitlePlace,
         ),*/
-        TextInput(
-          label: "Codigo Postal",
-          hintText: "ingresa el codigo postal",
-          inputType: TextInputType.text,
-          maxLines: 1,
-          controller: _controllerTitlePlace,
-        ),
-        TextInput(
-          //Description
-          hintText: "Description",
-          inputType: TextInputType.multiline,
-          maxLines: 4,
-          controller: _controllerDescriptionPlace,
-        ),
+          Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                const Dropdown(label: "Estado"),
+                TextInput(
+                  label: "Dirección del inmueble",
+                  hintText: "ingresa la dirección del inmueble",
+                  inputType: TextInputType.text,
+                  maxLines: 1,
+                  controller: _controllerTitlePlace,
+                ),
+                TextInput(
+                  label: "Número de calle",
+                  hintText: "ingresa el numero de calle del inmueble",
+                  inputType: TextInputType.text,
+                  maxLines: 1,
+                  controller: _controllerTitlePlace,
+                ),
+                TextInput(
+                  label: "Codigo Postal",
+                  hintText: "ingresa el codigo postal",
+                  inputType: TextInputType.text,
+                  maxLines: 1,
+                  controller: _controllerTitlePlace,
+                ),
+                TextInput(
+                  //Description
+                  hintText: "Description",
+                  inputType: TextInputType.multiline,
+                  maxLines: 4,
+                  controller: _controllerDescriptionPlace,
+                ),
+                /*
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
@@ -77,19 +99,21 @@ class _AddWindowScreen extends State<AddWindowScreen> {
               labelText: 'Enter your username',
             ),
           ),
-        ),
-        Container(
-          alignment: Alignment.center,
-          child:
-            Button(
-                text: "Crear",
-                onPressed: () => onSubmit(),
-                width: 300.0,
-                height: 50.0,
-                color: const Color(0xFF7C01FF),
-                textColor: Colors.white)
-        )
-      ],
+        ),*/
+                Container(
+                    alignment: Alignment.center,
+                    child: Button(
+                        text: "Crear",
+                        onPressed: () => onSubmit(),
+                        width: 300.0,
+                        height: 50.0,
+                        color: const Color(0xFF7C01FF),
+                        textColor: Colors.white))
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
