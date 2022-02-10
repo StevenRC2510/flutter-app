@@ -67,7 +67,7 @@ class _Button extends State<Button> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(Icons.play_arrow, color: Colors.black87),
+                  const Icon(Icons.mail_outline, color: Colors.black87),
                   Text(
                     widget.text,
                     style: TextStyle(

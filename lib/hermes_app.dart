@@ -44,6 +44,8 @@ class _HermesApp extends State<HermesApp> {
               primaryColor: Colors.deepPurple,
           ),
           child: BottomNavigationBar(
+            unselectedItemColor: const Color(0xFFC0BFC2),
+              fixedColor: const Color(0xFF7C01FF),
               onTap: onTapTapped,
               currentIndex: indexTap,
               items: const [
@@ -52,7 +54,7 @@ class _HermesApp extends State<HermesApp> {
                     label: "",
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.create_new_folder),
+                    icon: Icon(Icons.add_business),
                     label: ""
                 ),
                 BottomNavigationBarItem(
