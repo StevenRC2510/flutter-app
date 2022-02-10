@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
-
-import 'package:hermes_app/hermes_app.dart';
-import 'package:hermes_app/User/bloc/bloc_user.dart';
-import 'package:hermes_app/hermes_app_cupertino.dart';
 import 'package:hermes_app/User/ui/screens/sign_in_screen.dart';
+import 'package:hermes_app/states/auth.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,10 +14,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => AuthProvider()..charge()),
+        ],
         child: const MaterialApp(
           title: 'Flutter Demo',
           home: SignInScreen(),
-        ),bloc: UserBloc());
+        ));
   }
 }
