@@ -75,16 +75,15 @@ class _SignInScreen extends State<SignInScreen> {
         alignment: Alignment.center,
         children: <Widget>[
           //Container(color: Colors.white),
-          const GradientBackground(title: ""),
           Positioned(
             left: -1.0,
             top: -1.0,
-            child: Image.asset(decorationStartPath, height: 200.0),
+            child: Image.asset(decorationStartPath, height: 130.0),
           ),
           Positioned(
             right: -1.0,
             bottom: -1.0,
-            child: Image.asset(decorationEndPath, height: 180.0),
+            child: Image.asset(decorationEndPath, height: 130.0),
           ),
           AnimatedPositioned(
               duration: const Duration(milliseconds: 500),

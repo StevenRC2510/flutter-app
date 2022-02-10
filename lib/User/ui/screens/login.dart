@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hermes_app/widgets/button.dart';
 import 'package:hermes_app/commons/snackbar.dart';
 
 class SignIn extends StatefulWidget {
@@ -53,19 +55,19 @@ class _SignInState extends State<SignIn> {
                           controller: loginEmailController,
                           keyboardType: TextInputType.emailAddress,
                           style: const TextStyle(
-                              fontFamily: 'WorkSansSemiBold',
+                              fontFamily: 'Monserrat',
                               fontSize: 16.0,
                               color: Colors.black),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             icon: Icon(
-                              FontAwesomeIcons.envelope,
-                              color: Colors.black,
-                              size: 22.0,
+                              Icons.mail_outline,
+                              color: Colors.grey,
+                              size: 24.0,
                             ),
                             hintText: 'Email Address',
                             hintStyle: TextStyle(
-                                fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
+                                fontFamily: 'Monserrat', fontSize: 16.0),
                           ),
                           onSubmitted: (_) {
                             focusNodePassword.requestFocus();
@@ -85,19 +87,19 @@ class _SignInState extends State<SignIn> {
                           controller: loginPasswordController,
                           obscureText: _obscureTextPassword,
                           style: const TextStyle(
-                              fontFamily: 'WorkSansSemiBold',
+                              fontFamily: 'Monserrat',
                               fontSize: 16.0,
                               color: Colors.black),
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             icon: const Icon(
-                              FontAwesomeIcons.lock,
-                              size: 22.0,
-                              color: Colors.black,
+                              Icons.lock_outline,
+                              size: 24.0,
+                              color: Colors.grey,
                             ),
                             hintText: 'Password',
                             hintStyle: const TextStyle(
-                                fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
+                                fontFamily: 'Monserrat', fontSize: 16.0),
                             suffixIcon: GestureDetector(
                               onTap: _toggleLogin,
                               child: Icon(
@@ -105,7 +107,7 @@ class _SignInState extends State<SignIn> {
                                     ? FontAwesomeIcons.eye
                                     : FontAwesomeIcons.eyeSlash,
                                 size: 15.0,
-                                color: Colors.black,
+                                color: Colors.white70,
                               ),
                             ),
                           ),
@@ -121,22 +123,47 @@ class _SignInState extends State<SignIn> {
               ),
               Container(
                 margin: const EdgeInsets.only(top: 170.0),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  boxShadow: <BoxShadow>[
+                  /*
+                    boxShadow: <BoxShadow>[
                     BoxShadow(
-                      color: Color(0xFFfbab66),
-                      offset: Offset(1.0, 6.0),
+                      color: Color(0xFF9634FF),
+                      offset: Offset(0.5, 0.5),
                       blurRadius: 20.0,
                     ),
                     BoxShadow(
-                      color: Color(0xFFf7418c),
-                      offset: Offset(1.0, 6.0),
+                      color: Color(0xFF6301CC),
+                      offset: Offset(1.0, 0.5),
                       blurRadius: 20.0,
                     ),
                   ],
                   gradient: LinearGradient(
-                      colors: <Color>[Color(0xFFf7418c), Color(0xFFfbab66)],
+                      colors: <Color>[Color(0xFF9634FF), Color(0xFF6301CC)],
+                      begin: FractionalOffset(0.2, 0.2),
+                      end: FractionalOffset(1.0, 1.0),
+                      stops: <double>[0.0, 1.0],
+                      tileMode: TileMode.clamp),
+                ),
+                child: Button(
+                    text: "Crear",
+                    onPressed: () => CustomSnackBar(
+                        context, const Text('Facebook button pressed')),
+                    width: 300.0,
+                    height: 50.0,
+                    color: const Color(0xFF7C01FF),
+                    textColor: Colors.white),
+                  */
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Colors.deepPurple.withOpacity(0.5),
+                      offset: const Offset(0, 1),
+                      blurRadius: 5.0,
+                      spreadRadius: 2.0,
+                    ),
+                  ],
+                  gradient: const LinearGradient(
+                      colors: <Color>[Color(0xFF9634FF), Color(0xFF6301CC)],
                       begin: FractionalOffset(0.2, 0.2),
                       end: FractionalOffset(1.0, 1.0),
                       stops: <double>[0.0, 1.0],
@@ -144,16 +171,16 @@ class _SignInState extends State<SignIn> {
                 ),
                 child: MaterialButton(
                   highlightColor: Colors.transparent,
-                  splashColor: const Color(0xFFf7418c),
+                  splashColor: const Color(0xFFB067FF),
                   child: const Padding(
                     padding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
                     child: Text(
-                      'LOGIN',
+                      'Login',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 25.0,
-                          fontFamily: 'WorkSansBold'),
+                          fontFamily: 'Monserrat'),
                     ),
                   ),
                   onPressed: () => CustomSnackBar(
@@ -227,33 +254,23 @@ class _SignInState extends State<SignIn> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 10.0, right: 40.0),
-                child: GestureDetector(
-                  onTap: () => CustomSnackBar(
-                      context, const Text('Facebook button pressed')),
-                  child: Container(
-                    padding: const EdgeInsets.all(15.0),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    child: const Icon(
-                      FontAwesomeIcons.facebookF,
-                      color: Color(0xFF0084ff),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: GestureDetector(
                   onTap: () => CustomSnackBar(
                       context, const Text('Google button pressed')),
                   child: Container(
                     padding: const EdgeInsets.all(15.0),
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          offset: const Offset(0, 1),
+                          blurRadius: 10.0,
+                          spreadRadius: 0.0,
+                        ),
+                      ],
                     ),
                     child: const Icon(
                       FontAwesomeIcons.google,
