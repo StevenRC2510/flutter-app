@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,8 +13,10 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  TextEditingController loginEmailController = TextEditingController();
-  TextEditingController loginPasswordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+
+  String _email = '';
+  String _password = '';
 
   final FocusNode focusNodeEmail = FocusNode();
   final FocusNode focusNodePassword = FocusNode();
@@ -42,82 +45,90 @@ class _SignInState extends State<SignIn> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Container(
+                child: SizedBox(
                   width: 300.0,
                   height: 190.0,
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
-                        child: TextField(
-                          focusNode: focusNodeEmail,
-                          controller: loginEmailController,
-                          keyboardType: TextInputType.emailAddress,
-                          style: const TextStyle(
-                              fontFamily: 'Monserrat',
-                              fontSize: 16.0,
-                              color: Colors.black),
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            icon: Icon(
-                              Icons.mail_outline,
-                              color: Colors.grey,
-                              size: 24.0,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
+                          child: TextFormField(
+                            initialValue: '',
+                            focusNode: focusNodeEmail,
+                            keyboardType: TextInputType.emailAddress,
+                            style: const TextStyle(
+                                fontFamily: 'Monserrat',
+                                fontSize: 16.0,
+                                color: Colors.black),
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              icon: Icon(
+                                Icons.mail_outline,
+                                color: Colors.grey,
+                                size: 24.0,
+                              ),
+                              hintText: 'Email Address',
+                              hintStyle: TextStyle(
+                                  fontFamily: 'Monserrat', fontSize: 16.0),
                             ),
-                            hintText: 'Email Address',
-                            hintStyle: TextStyle(
-                                fontFamily: 'Monserrat', fontSize: 16.0),
+                            onSaved: (String? email) {
+                              _email = email ?? '';
+                            },
+                            onFieldSubmitted: (_) {
+                              focusNodePassword.requestFocus();
+                            },
                           ),
-                          onSubmitted: (_) {
-                            focusNodePassword.requestFocus();
-                          },
                         ),
-                      ),
-                      Container(
-                        width: 250.0,
-                        height: 1.0,
-                        color: Colors.grey[400],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
-                        child: TextField(
-                          focusNode: focusNodePassword,
-                          controller: loginPasswordController,
-                          obscureText: _obscureTextPassword,
-                          style: const TextStyle(
-                              fontFamily: 'Monserrat',
-                              fontSize: 16.0,
-                              color: Colors.black),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            icon: const Icon(
-                              Icons.lock_outline,
-                              size: 24.0,
-                              color: Colors.grey,
-                            ),
-                            hintText: 'Password',
-                            hintStyle: const TextStyle(
-                                fontFamily: 'Monserrat', fontSize: 16.0),
-                            suffixIcon: GestureDetector(
-                              onTap: _toggleLogin,
-                              child: Icon(
-                                _obscureTextPassword
-                                    ? FontAwesomeIcons.eye
-                                    : FontAwesomeIcons.eyeSlash,
-                                size: 15.0,
-                                color: Colors.white70,
+                        Container(
+                          width: 250.0,
+                          height: 1.0,
+                          color: Colors.grey[400],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
+                          child: TextFormField(
+                            focusNode: focusNodePassword,
+                            obscureText: _obscureTextPassword,
+                            style: const TextStyle(
+                                fontFamily: 'Monserrat',
+                                fontSize: 16.0,
+                                color: Colors.black),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              icon: const Icon(
+                                Icons.lock_outline,
+                                size: 24.0,
+                                color: Colors.grey,
+                              ),
+                              hintText: 'Password',
+                              hintStyle: const TextStyle(
+                                  fontFamily: 'Monserrat', fontSize: 16.0),
+                              suffixIcon: GestureDetector(
+                                onTap: _toggleLogin,
+                                child: Icon(
+                                  _obscureTextPassword
+                                      ? FontAwesomeIcons.eye
+                                      : FontAwesomeIcons.eyeSlash,
+                                  size: 15.0,
+                                  color: Colors.white70,
+                                ),
                               ),
                             ),
+                            onSaved: (String? password) {
+                              _password = password ?? '';
+                            },
+                            onFieldSubmitted: (_) {
+                              _toggleSignInButton();
+                            },
+                            textInputAction: TextInputAction.go,
                           ),
-                          onSubmitted: (_) {
-                            _toggleSignInButton();
-                          },
-                          textInputAction: TextInputAction.go,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -183,8 +194,7 @@ class _SignInState extends State<SignIn> {
                           fontFamily: 'Monserrat'),
                     ),
                   ),
-                  onPressed: () => CustomSnackBar(
-                      context, const Text('Login button pressed')),
+                  onPressed: _toggleSignInButton,
                 ),
               )
             ],
@@ -287,7 +297,13 @@ class _SignInState extends State<SignIn> {
   }
 
   void _toggleSignInButton() {
-    CustomSnackBar(context, const Text('Login button pressed'));
+    _formKey.currentState?.save();
+    if (kDebugMode) {
+      print(_email);
+      print('click');
+    }
+    dynamic share = _email;
+    CustomSnackBar(context, Text('Login button pressed, email: ${share}'));
   }
 
   void _toggleLogin() {

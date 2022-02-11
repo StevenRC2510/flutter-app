@@ -86,69 +86,29 @@ class _SignInScreen extends State<SignInScreen> {
             child: Image.asset(decorationEndPath, height: 130.0),
           ),
           AnimatedPositioned(
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeOutQuad,
-              top: keyboardOpen ? -size.height / 3.7 : 0.0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 100.0),
-                  SvgPicture.asset(
-                    flagColombia,
-                    width: 300.0,
-                    height: 50.0,
-                  ),
-                  SvgPicture.asset(
-                    flagMexico,
-                    width: 300.0,
-                    height: 50.0,
-                  ),
-                  Image.asset(logoPath),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: CustomToggle(
-                        pageController: pageController,
-                        titleLeft: 'LOGIN',
-                        titleRight: 'SIGN UP',
-                        isLeft: isLeft),
-                  ),
-                ],
-              )),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: size.height / 2.5),
-              Expanded(
-                flex: 2,
-                child: PageView(
-                  controller: pageController,
-                  physics: const ClampingScrollPhysics(),
-                  onPageChanged: (int i) {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    if (i == 0) {
-                      setState(() {
-                        isLeft = true;
-                      });
-                    } else if (i == 1) {
-                      setState(() {
-                        isLeft = false;
-                      });
-                    }
-                  },
-                  children: <Widget>[
-                    ConstrainedBox(
-                      constraints: const BoxConstraints.expand(),
-                      child: const SignIn(),
-                    ),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints.expand(),
-                      child: const SignUp(),
-                    ),
-                  ],
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeOutQuad,
+            top: keyboardOpen ? -size.height * 0.1 : 0.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 100.0),
+                SvgPicture.asset(
+                  flagColombia,
+                  width: 300.0,
+                  height: 50.0,
                 ),
-              ),
-            ],
-          )
+                SvgPicture.asset(
+                  flagMexico,
+                  width: 300.0,
+                  height: 50.0,
+                ),
+                Image.asset(logoPath),
+                SignIn()
+              ],
+            ),
+          ),
+          // Positioned(bottom: 30, child: SignIn()),
         ],
       ),
     );
