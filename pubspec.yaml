@@ -43,6 +43,7 @@ dependencies:
   google_sign_in: ^5.2.3
   http: ^0.13.4
   flutter_svg: ^1.0.3
+  amazon_cognito_identity_dart_2: ^1.0.5
 
 
 dev_dependencies:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Button extends StatefulWidget {
   final String text;
+  final TextStyle? textStyle;
   final VoidCallback onPressed;
   final double? width;
   final double? height;
@@ -15,6 +16,7 @@ class Button extends StatefulWidget {
       {Key? key,
       required this.onPressed,
       required this.text,
+      this.textStyle,
       this.height,
       this.width,
       this.textColor = Colors.black,
@@ -70,11 +72,12 @@ class _Button extends State<Button> {
                   //const Icon(Icons.mail_outline, color: Colors.black87),
                   Text(
                     widget.text,
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontFamily: "Monserrat",
-                        color: widget.textColor,
-                        fontWeight: FontWeight.bold),
+                    style: widget.textStyle ??
+                        TextStyle(
+                            fontSize: 16.0,
+                            fontFamily: "Monserrat",
+                            color: widget.textColor,
+                            fontWeight: FontWeight.bold),
                   ),
                 ])),
       ),

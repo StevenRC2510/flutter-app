@@ -12,6 +12,7 @@ class AuthProvider with ChangeNotifier {
   bool get isLoggedIn => _user != null;
 
   void charge() async {
+    print('charge');
     _isLoading = true;
     notifyListeners();
     await Future.delayed(const Duration(seconds: 2));

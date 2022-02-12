@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:hermes_app/User/ui/screens/login.dart';
-import 'package:hermes_app/User/ui/screens/register.dart';
-import 'package:hermes_app/commons/toggle.dart';
+import 'package:hermes_app/states/windows_state.dart';
 import 'package:provider/provider.dart';
+
+import 'package:flutter/material.dart';
+import 'package:hermes_app/states/auth.dart';
+import 'package:hermes_app/User/ui/screens/login.dart';
 import 'package:hermes_app/hermes_app.dart';
 
-import 'package:hermes_app/states/auth.dart';
-import 'package:hermes_app/widgets/button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hermes_app/widgets/gradient_background.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -56,6 +54,7 @@ class _SignInScreen extends State<SignInScreen> {
       };
 
   Widget _handleCurrentSession(BuildContext context) {
+    // context.read<WindowProvider>().getWindows();
     if (context.watch<AuthProvider>().isLoading) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -104,7 +103,7 @@ class _SignInScreen extends State<SignInScreen> {
                   height: 50.0,
                 ),
                 Image.asset(logoPath),
-                SignIn()
+                const SignIn()
               ],
             ),
           ),

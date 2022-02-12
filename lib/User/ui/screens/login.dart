@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
+import 'package:hermes_app/states/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hermes_app/widgets/button.dart';
 import 'package:hermes_app/commons/snackbar.dart';
 
 class SignIn extends StatefulWidget {
@@ -296,14 +297,41 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  void _toggleSignInButton() {
+  final userPool = CognitoUserPool(
+      'us-east-1_V5yhvlb7e', '7f86gu6fq8813e9ac23610lt2g',
+      endpoint: 'mx-habi-google-users-dev',
+      clientSecret: '1p4np2cli46emihtu3uvups94v88653lgcrt4v679fuu4ic85f2c');
+
+  void _toggleSignInButton() async {
     _formKey.currentState?.save();
-    if (kDebugMode) {
-      print(_email);
-      print('click');
+    String? message;
+    final cognitoUser = CognitoUser('stevenruiz@habi.co', userPool);
+    final authDetails = AuthenticationDetails(
+      username: 'stevenruiz@habi.co',
+      password: "D3v3l0p3rcali\$",
+    );
+    CognitoUserSession? session;
+    try {
+      session = await cognitoUser.authenticateUser(authDetails);
+    } on CognitoClientException catch (e) {
+      if (e.code == 'InvalidParameterException' ||
+          e.code == 'NotAuthorizedException' ||
+          e.code == 'UserNotFoundException' ||
+          e.code == 'ResourceNotFoundException') {
+        message = e.message;
+      } else {
+        message = 'An unknown client error occured';
+      }
+      // handle New Password challenge
+    } catch (e) {
+      print(e);
+      print('aqui');
     }
-    dynamic share = _email;
-    CustomSnackBar(context, Text('Login button pressed, email: ${share}'));
+    print(message);
+    print(session?.getAccessToken().getJwtToken());
+
+    context.read<AuthProvider>().getUser();
+    CustomSnackBar(context, Text('Login button pressed, email: ${_email}'));
   }
 
   void _toggleLogin() {
