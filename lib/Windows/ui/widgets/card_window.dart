@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CardWindow extends StatelessWidget {
-  const CardWindow({Key? key}) : super(key: key);
+  final Map<String, dynamic> windows;
+  const CardWindow({Key? key, required this.windows}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final String address = windows['address'] as String;
+    final String subr = windows['suburb'] as String;
     final card = Container(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
       margin: const EdgeInsets.only(left: 50.0),
@@ -55,9 +58,9 @@ class CardWindow extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'The National Art Center',
-                      style: TextStyle(
+                    Text(
+                      windows['name_real_estate'],
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
@@ -72,7 +75,7 @@ class CardWindow extends StatelessWidget {
                           size: 20,
                         ),
                         Text(
-                          'Roppongi, Minato, Tokyo, Japan.',
+                          "$address, $subr",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,

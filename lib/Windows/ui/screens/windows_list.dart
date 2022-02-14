@@ -19,18 +19,12 @@ class _WindowList extends State<WindowList> {
   ScrollController controller = ScrollController();
   double topContainer = 0;
   bool closeTopContainer = false;
-  List<Widget> itemsData = [
-    const CardWindow(),
-    const CardWindow(),
-    const CardWindow(),
-    const CardWindow()
-  ];
 
   @override
   void initState() {
     super.initState();
     controller.addListener(() {
-      double value = controller.offset * 0.5;
+      double value = controller.offset / 250;
 
       setState(() {
         topContainer = value;
@@ -43,41 +37,49 @@ class _WindowList extends State<WindowList> {
 
   @override
   Widget build(BuildContext context) {
-    final arrayWidget = context.watch<WindowProvider>().windows;
-    print(arrayWidget);
-    return Column(children: <Widget>[
-      const WindowsHeader(),
-      SizedBox(
-        height: MediaQuery.of(context).size.height / 1.43,
-        child: ListView.builder(
-            controller: controller,
-            itemCount: itemsData.length,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              double scale = 1;
-              print(topContainer);
-              if (topContainer > 0.2) {
-                scale = index + 0.5 - topContainer;
-                if (scale <= 0.5) {
-                  scale = 0;
-                } else if (scale > 1) {
-                  scale = 1;
-                }
-              }
-              return AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
-                opacity: scale,
-                child: Transform(
-                  transform: Matrix4.identity()..scale(scale, scale),
-                  alignment: Alignment.bottomCenter,
-                  child: Align(
-                      heightFactor: 1.1,
-                      alignment: Alignment.topCenter,
-                      child: itemsData[index]),
-                ),
-              );
-            }),
+    var arrayWidget = context.watch<WindowProvider>().windows;
+    print(arrayWidget.length);
+    return Stack(children: <Widget>[
+      Column(
+        children: [
+          const SizedBox(
+            height: 120,
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.75,
+            child: ListView.builder(
+                controller: controller,
+                itemCount: arrayWidget.length,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  double scale = 1;
+                  if (topContainer > 0.5) {
+                    scale = index + 0.5 - topContainer;
+                    if (scale <= 0.5) {
+                      scale = 0;
+                    } else if (scale > 1) {
+                      scale = 1;
+                    }
+                  }
+                  return AnimatedOpacity(
+                    duration: const Duration(milliseconds: 500),
+                    opacity: scale,
+                    child: Transform(
+                      transform: Matrix4.identity()..scale(scale, scale),
+                      alignment: Alignment.bottomCenter,
+                      child: Align(
+                          heightFactor: 1.1,
+                          alignment: Alignment.topCenter,
+                          child: CardWindow(
+                            windows: arrayWidget[index],
+                          )),
+                    ),
+                  );
+                }),
+          ),
+        ],
       ),
+      const WindowsHeader(),
     ]);
 
     /*

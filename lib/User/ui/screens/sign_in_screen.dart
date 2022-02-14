@@ -54,7 +54,7 @@ class _SignInScreen extends State<SignInScreen> {
       };
 
   Widget _handleCurrentSession(BuildContext context) {
-    // context.read<WindowProvider>().getWindows();
+    context.read<WindowProvider>().getWindows();
     if (context.watch<AuthProvider>().isLoading) {
       return const Center(
         child: CircularProgressIndicator(),
