@@ -75,7 +75,7 @@ class _AddWindowScreen extends State<AddWindowScreen> {
           Stack(
             alignment: Alignment.center,
             children: [
-              HeaderGradient(height: 160.0),
+              HeaderGradient(height: 100.0),
               const Text(
                 "Crear inmueble",
                 style: TextStyle(
@@ -112,10 +112,10 @@ class _AddWindowScreen extends State<AddWindowScreen> {
                         Padding(
                             padding: const EdgeInsets.all(10),
                             child: Container(
-                              height: 50,
-                              width: double.infinity,
+                              width: 300.0,
+                              height: 50.0,
                               child: RaisedButton(
-                                color: Colors.green,
+                                color: Color(0xFF7C01FF),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
                                     Scaffold.of(context).showSnackBar(
@@ -130,8 +130,8 @@ class _AddWindowScreen extends State<AddWindowScreen> {
                                 ),
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
-                                        new BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.green)),
+                                        new BorderRadius.circular(8.0),
+                                    side: BorderSide(color: Colors.deepPurpleAccent)),
                               ),
                             )),
                       ],

@@ -10,7 +10,7 @@ class WindowsHeader extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        HeaderGradient(height: 160.0),
+        HeaderGradient(height: 100.0),
         const Text(
           "Listado inmuebles",
           style: TextStyle(

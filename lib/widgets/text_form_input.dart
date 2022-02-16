@@ -4,9 +4,10 @@ class TextFormInput extends StatelessWidget {
   late String field;
   final String label;
   final String error;
+  final TextInputType keyboardType;
 
   TextFormInput(
-      {Key? key, required this.field, required this.label, required this.error})
+      {Key? key, required this.field, required this.label, required this.error, this.keyboardType = TextInputType.text})
       : super(key: key);
 
   @override
@@ -24,6 +25,7 @@ class TextFormInput extends StatelessWidget {
             borderSide: BorderSide(color: Color(0xFF3483FA)),
             borderRadius: BorderRadius.all(Radius.circular(8.0))),
       ),
+      keyboardType: keyboardType ,
       validator: (value) {
         if (value!.isEmpty) {
           return error;

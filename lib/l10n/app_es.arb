@@ -1,0 +1,10 @@
+{
+    "CO": {
+        "language": "Español Co",
+        "helloWorld": "¡Hola Mundo!"
+    },
+    "MX":{
+        "language": "Español Mx",
+        "helloWorld": "¡Hola Mundo!"
+    }
+}

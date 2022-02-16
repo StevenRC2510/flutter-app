@@ -1,11 +1,13 @@
-import 'package:hermes_app/states/windows_state.dart';
-import 'package:provider/provider.dart';
-
 import 'package:flutter/material.dart';
-import 'package:hermes_app/states/auth.dart';
-import 'package:hermes_app/User/ui/screens/login.dart';
-import 'package:hermes_app/hermes_app.dart';
 
+import 'package:provider/provider.dart';
+import 'package:hermes_app/states/auth.dart';
+import 'package:hermes_app/states/windows_state.dart';
+
+import 'package:hermes_app/hermes_app.dart';
+import 'package:hermes_app/User/ui/screens/login.dart';
+import 'package:hermes_app/User/ui/screens/login_two.dart';
+import 'package:hermes_app/widgets/language_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -70,7 +72,12 @@ class _SignInScreen extends State<SignInScreen> {
     final bool keyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Stack(
+      body: Column(
+        children: const [
+          LoginTwo()
+        ],
+      )
+      /*Stack(
         alignment: Alignment.center,
         children: <Widget>[
           //Container(color: Colors.white),
@@ -84,6 +91,7 @@ class _SignInScreen extends State<SignInScreen> {
             bottom: -1.0,
             child: Image.asset(decorationEndPath, height: 130.0),
           ),
+          //LanguagePickerWidget(),
           AnimatedPositioned(
             duration: const Duration(milliseconds: 500),
             curve: Curves.easeOutQuad,
@@ -92,6 +100,7 @@ class _SignInScreen extends State<SignInScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 100.0),
+                /*
                 SvgPicture.asset(
                   flagColombia,
                   width: 300.0,
@@ -101,15 +110,15 @@ class _SignInScreen extends State<SignInScreen> {
                   flagMexico,
                   width: 300.0,
                   height: 50.0,
-                ),
+                ),*/
                 Image.asset(logoPath),
-                const SignIn()
+                const SignIn(),
               ],
             ),
           ),
           // Positioned(bottom: 30, child: SignIn()),
         ],
-      ),
+      ),*/
     );
   }
 }

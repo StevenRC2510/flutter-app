@@ -44,7 +44,7 @@ class HeaderGradient extends StatelessWidget {
     }
 
     return ClipPath(
-      clipper: ClipPathClass(),
+      //clipper: ClipPathClass(),
       child: Container(
         width: screenWidth,
         height: height,

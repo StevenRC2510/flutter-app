@@ -49,6 +49,7 @@ class LocationFieldsForm extends StatelessWidget {
       TextFormInput(
           label: "Número de calle",
           error: "Digite el número de calle del inmueble",
+          keyboardType: TextInputType.streetAddress,
           field: numberAddress),
       TextInput(
         label: "Número de calle",
@@ -67,6 +68,7 @@ class LocationFieldsForm extends StatelessWidget {
       TextFormInput(
           label: "Código Postal",
           error: "Digite el código postal",
+          keyboardType: TextInputType.number,
           field: zipCode),
       TextInput(
         label: "Código Postal",

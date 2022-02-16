@@ -25,7 +25,6 @@ class _WindowList extends State<WindowList> {
     super.initState();
     controller.addListener(() {
       double value = controller.offset / 250;
-
       setState(() {
         topContainer = value;
         closeTopContainer = controller.offset > 50;
@@ -53,9 +52,9 @@ class _WindowList extends State<WindowList> {
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   double scale = 1;
-                  if (topContainer > 0.5) {
-                    scale = index + 0.5 - topContainer;
-                    if (scale <= 0.5) {
+                  if (topContainer > 0.2) {
+                    scale = index + 0.2 - topContainer;
+                    if (scale <= 0.2) {
                       scale = 0;
                     } else if (scale > 1) {
                       scale = 1;
