@@ -9,6 +9,7 @@ import 'package:hermes_app/User/ui/screens/login.dart';
 import 'package:hermes_app/User/ui/screens/login_two.dart';
 import 'package:hermes_app/widgets/language_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hermes_app/hermes_app_test.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -63,7 +64,8 @@ class _SignInScreen extends State<SignInScreen> {
       );
     }
     if (context.watch<AuthProvider>().isLoggedIn) {
-      return const HermesApp();
+      return const AnimatedBottomBar();
+      //return const HermesApp();
     }
     return signInGoogleUI(context);
   }

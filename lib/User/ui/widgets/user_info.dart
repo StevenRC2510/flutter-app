@@ -41,10 +41,62 @@ class UserInfo extends StatelessWidget {
       ],
     );
 
+
+    final profileInfo = Column(
+        children: <Widget>[
+          Container(
+            height: 10,
+            width: 10,
+            margin: EdgeInsets.only(top: 10),
+            child: Stack(
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 100,
+                  backgroundImage: NetworkImage(user.photoURL),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    height: 2.5,
+                    width: 2.5,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).accentColor,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            'Nicolas Adams',
+          ),
+          SizedBox(height: 10),
+          Text(
+            'nicolasadams@gmail.com',
+          ),
+          SizedBox(height: 20),
+          Container(
+            height: 4,
+            width: 20,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(3),
+              color: Theme.of(context).accentColor,
+            ),
+            child: Center(
+              child: Text(
+                'Upgrade to PRO',
+              ),
+            ),
+          ),
+        ],
+      );
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 0.0),
       child: Column(
-        children: <Widget>[userPhoto, userInfo],
+        children: <Widget>[userPhoto, userInfo, profileInfo],
       ),
     );
   }
