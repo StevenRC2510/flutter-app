@@ -47,7 +47,6 @@ class _Dropdown extends State<Dropdown> {
           ),
         ),
         Container(
-         //padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           padding: const EdgeInsets.only(right: 20.0, left: 20.0),
           decoration: BoxDecoration(
               color: Colors.white,
@@ -61,7 +60,6 @@ class _Dropdown extends State<Dropdown> {
             style: const TextStyle(color: Color(0xFF252129)),
             underline: Container(
               height: 0,
-              /*color: Colors.deepPurpleAccent,*/
             ),
             onChanged: (String? newValue) {
               setState(() {

@@ -59,98 +59,107 @@ class _InfoPropertyFieldsForm extends State<InfoPropertyFieldsForm> {
   Widget _buildFirstPhone() {
     final _controllerTitlePlace = TextEditingController();
 
-    return Column(children: [
-      TextFormInput(
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: TextFormInput(
           label: "Teléfono",
           error: "Digite el Teléfono",
           field: widget.firstPhone),
+      /*
       TextInput(
         label: "Teléfono",
         hintText: "Digite el Teléfono",
         inputType: TextInputType.text,
         maxLines: 1,
         controller: _controllerTitlePlace,
-      ),
-    ]);
+      ),*/
+    );
   }
 
   Widget _buildSecondaryPhone() {
     final _controllerTitlePlace = TextEditingController();
 
-    return Column(children: [
-      TextFormInput(
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: TextFormInput(
           label: "Teléfono secundario",
           error: "",
           field: widget.secondaryPhone),
+      /*
       TextInput(
         label: "Teléfono secundario",
         hintText: "ingresa el Teléfono secundario",
         inputType: TextInputType.text,
         maxLines: 1,
         controller: _controllerTitlePlace,
-      ),
-    ]);
+      ),*/
+    );
   }
 
   Widget _buildTower() {
     final _controllerTitlePlace = TextEditingController();
 
-    return Column(children: [
-      TextFormInput(label: "Interior/Torre", error: "", field: widget.tower),
-      TextInput(
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: TextFormInput(
+          label: "Interior/Torre", error: "", field: widget.tower),
+      /*TextInput(
         label: "Interior/Torre",
         hintText: "Digite el interior/torre",
         inputType: TextInputType.text,
         maxLines: 1,
         controller: _controllerTitlePlace,
-      ),
-    ]);
+      ),*/
+    );
   }
 
   Widget _buildFloor() {
-    return Column(children: const [
-      Dropdown(label: "Número de piso"),
-    ]);
+    return const Padding(
+      padding: const EdgeInsets.all(10),
+      child: Dropdown(label: "Número de piso"),
+    );
   }
 
   Widget _buildDoorNumber() {
     final _controllerTitlePlace = TextEditingController();
 
-    return Column(children: [
-      TextFormInput(
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: TextFormInput(
           label: "Número del inmueble", error: "", field: widget.doorNumber),
-      TextInput(
+      /*TextInput(
         label: "Número del inmueble",
         hintText: "Digite el número del inmueble",
         inputType: TextInputType.text,
         maxLines: 1,
         controller: _controllerTitlePlace,
-      ),
-    ]);
+      ),*/
+    );
   }
 
   Widget _buildContactName() {
     final _controllerTitlePlace = TextEditingController();
 
-    return Column(children: [
-      TextFormInput(
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: TextFormInput(
           label: "Nombre del contacto", error: "", field: widget.contactName),
+      /*
       TextInput(
         label: "Nombre del contacto",
         hintText: "Digite el nombre del contacto",
         inputType: TextInputType.text,
         maxLines: 1,
         controller: _controllerTitlePlace,
-      ),
-    ]);
+      ),*/
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        //margin: const EdgeInsets.all(10),
-        color: Colors.green,
+        margin: const EdgeInsets.only(top: 10),
         child: ExpansionPanelList(
           animationDuration: const Duration(milliseconds: 1000),
           children: [
@@ -175,8 +184,11 @@ class _InfoPropertyFieldsForm extends State<InfoPropertyFieldsForm> {
                   _buildFloor(),
                   _buildDoorNumber(),
                   _buildContactName(),
-                  Row(
-                    children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 20),
+                    child: Row(
+                      children: [
+                        /*
                       CircleButton(
                         onPressed: () {
                           pickImage(type: "camera");
@@ -185,18 +197,19 @@ class _InfoPropertyFieldsForm extends State<InfoPropertyFieldsForm> {
                         icon: Icons.camera,
                         iconSize: 20.0,
                         color: const Color.fromRGBO(255, 255, 255, 0.6),
-                      ),
-                      CircleButton(
-                        onPressed: () {
-                          pickImage();
-                        },
-                        mini: true,
-                        icon: Icons.image,
-                        iconSize: 20.0,
-                        color: const Color.fromRGBO(255, 255, 255, 0.6),
-                      ),
-                    ],
-                  )
+                      ),*/
+                        CircleButton(
+                          onPressed: () {
+                            pickImage();
+                          },
+                          mini: true,
+                          icon: Icons.image,
+                          iconSize: 20.0,
+                          color: const Color.fromRGBO(255, 255, 255, 0.6),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
               isExpanded: _expanded,

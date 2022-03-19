@@ -18,47 +18,31 @@ class AddWindowScreen extends StatefulWidget {
 }
 
 class _AddWindowScreen extends State<AddWindowScreen> {
+  late final String _countryState = "",
+      _address = "",
+      _numberAddress = "",
+      _zipCode = "",
+      _firstPhone = "",
+      _secondaryPhone = "",
+      _tower = "",
+      _floor = "",
+      _doorNumber = "",
+      _contactName = "";
+/*
   late final String _countryState = "";
   late final String _address = "";
   late final String _numberAddress = "";
   late final String _zipCode = "";
   late final String _firstPhone = "";
-  late final String _secondaryPhone= "";
-  late final String _tower= "";
-  late final String _floor= "";
-  late final String _doorNumber= "";
-  late final String _contactName= "";
+  late final String _secondaryPhone = "";
+  late final String _tower = "";
+  late final String _floor = "";
+  late final String _doorNumber = "";
+  late final String _contactName = "";*/
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late String _email, _password;
+  final List<Widget> _propertyInfoList = [];
 
-  /*
-
-  Widget _buildAddress() {
-    return TextFormField(
-      decoration: const InputDecoration(
-        labelText: 'Dirección del inmueble',
-        filled: true,
-        fillColor: Color(0xFFFFFFFF),
-        border: InputBorder.none,
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFF78747B)),
-            borderRadius: BorderRadius.all(Radius.circular(8.0))),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFF3483FA)),
-            borderRadius: BorderRadius.all(Radius.circular(8.0))),
-      ),
-      maxLength: 10,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return 'Name is Required';
-        }
-        return null;
-      },
-      onSaved: (value) {
-        _address = value!;
-      },
-    );
-  }
-*/
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -66,7 +50,27 @@ class _AddWindowScreen extends State<AddWindowScreen> {
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
 
-    void onSubmit() {}
+    void _addCardWidget() {
+      setState(() {
+        _propertyInfoList.add(LocationFieldsForm(
+            countryState: _countryState,
+            address: _address,
+            numberAddress: _numberAddress,
+            zipCode: _zipCode));
+      });
+    }
+
+    void _onSubmit() {
+      if (_formKey.currentState!.validate()) {
+        _formKey.currentState!.save();
+        print(_address);
+        print(_numberAddress);
+        print(_zipCode);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Processing Data: $_address => $_email => $_password')),
+        );
+      }
+    }
 
     return SingleChildScrollView(
       child: Column(
@@ -94,34 +98,58 @@ class _AddWindowScreen extends State<AddWindowScreen> {
                     key: _formKey,
                     child: Column(
                       children: [
+                        TextFormField(
+                          decoration: InputDecoration(labelText: 'Email:'),
+                          onSaved: (input) => _email = input!,
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(labelText: 'Password:'),
+                          onSaved: (input) => _password = input!,
+                          obscureText: true,
+                        ),
                         LocationFieldsForm(
                             countryState: _countryState,
                             address: _address,
                             numberAddress: _numberAddress,
                             zipCode: _zipCode),
-                        InfoPropertyFieldsForm(
+                        /* InfoPropertyFieldsForm(
                             firstPhone: _firstPhone,
                             secondaryPhone: _secondaryPhone,
                             tower: _tower,
                             floor: _floor,
                             doorNumber: _doorNumber,
-                            contactName: _contactName
+                            contactName: _contactName),
+                        /**/
+                        _buildAddress(),*/
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ElevatedButton(
+                            onPressed: () => _onSubmit(),
+                            child: const Text('First Submit'),
+                            style: ElevatedButton.styleFrom(
+                                primary: const Color(0xFF7C01FF),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 50, vertical: 5),
+                                textStyle: const TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold)),
+                          ),
                         ),
                         /*
-                        _buildAddress(),*/
                         Padding(
                             padding: const EdgeInsets.all(10),
                             child: Container(
                               width: 300.0,
                               height: 50.0,
                               child: RaisedButton(
-                                color: Color(0xFF7C01FF),
+                                color: const Color(0xFF7C01FF),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    Scaffold.of(context).showSnackBar(
-                                        const SnackBar(
-                                            content: Text('Processing Data')));
-                                    print(_address);
+                                    _formKey.currentState!.save();
+
+                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                        content: Text(
+                                            'Email: $_address and Password $_zipCode')));
+                                    print(_formKey.currentState);
                                   }
                                 },
                                 child: const Text(
@@ -129,13 +157,18 @@ class _AddWindowScreen extends State<AddWindowScreen> {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(8.0),
-                                    side: BorderSide(color: Colors.deepPurpleAccent)),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    side: const BorderSide(
+                                        color: Colors.deepPurpleAccent)),
                               ),
-                            )),
+                            )),*/
                       ],
                     )),
+                FloatingActionButton(
+                  onPressed: _addCardWidget,
+                  tooltip: 'Add',
+                  child: Icon(Icons.add),
+                ),
                 /*
                 const Dropdown(label: "Estado"),
                 TextInput(
@@ -170,7 +203,7 @@ class _AddWindowScreen extends State<AddWindowScreen> {
                     alignment: Alignment.center,
                     child: Button(
                         text: "Enviar",
-                        onPressed: () => onSubmit(),
+                        onPressed: () => _onSubmit(),
                         width: 300.0,
                         height: 50.0,
                         color: const Color(0xFF7C01FF),

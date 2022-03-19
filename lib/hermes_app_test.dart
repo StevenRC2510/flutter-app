@@ -26,8 +26,9 @@ class _AnimatedBottomBarState extends State<AnimatedBottomBar> {
   Widget build(BuildContext context) {
     screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.lightGreen,
-      //backgroundColor: Color(0xFFF2F3F4),
+      //backgroundColor: Colors.lightGreen,
+      backgroundColor: const Color(0xFFF8F9F9),
+      //backgroundColor: Colors.white,
       body: getPage(_currentPage),
       bottomNavigationBar: AnimatedBottomNav(
 

@@ -27,57 +27,62 @@ class LocationFieldsForm extends StatelessWidget {
   Widget _buildAddress() {
     final _controllerTitlePlace = TextEditingController();
 
-    return Column(children: [
-      TextFormInput(
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: TextFormInput(
           label: "Dirección del inmueble",
           error: "Digite la dirección del inmueble",
           field: address),
+      /*
       TextInput(
         label: "Dirección del inmueble",
         hintText: "ingresa la dirección del inmueble",
         inputType: TextInputType.text,
         maxLines: 1,
         controller: _controllerTitlePlace,
-      ),
-    ]);
+      ),*/
+    );
   }
 
   Widget _buildNumberAddress() {
     final _controllerTitlePlace = TextEditingController();
-
-    return Column(children: [
-      TextFormInput(
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: TextFormInput(
           label: "Número de calle",
           error: "Digite el número de calle del inmueble",
           keyboardType: TextInputType.streetAddress,
           field: numberAddress),
+      /*
       TextInput(
         label: "Número de calle",
         hintText: "Digite el número de calle del inmueble",
         inputType: TextInputType.text,
         maxLines: 1,
         controller: _controllerTitlePlace,
-      ),
-    ]);
+      ),*/
+    );
   }
 
   Widget _buildZipCode() {
     final _controllerTitlePlace = TextEditingController();
 
-    return Column(children: [
-      TextFormInput(
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: TextFormInput(
           label: "Código Postal",
           error: "Digite el código postal",
           keyboardType: TextInputType.number,
           field: zipCode),
+      /*
       TextInput(
         label: "Código Postal",
         hintText: "Digite el código postal",
         inputType: TextInputType.text,
         maxLines: 1,
         controller: _controllerTitlePlace,
-      ),
-    ]);
+      ),*/
+    );
   }
 
   @override
