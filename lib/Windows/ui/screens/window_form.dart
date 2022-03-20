@@ -111,7 +111,8 @@ class _AddWindowScreen extends State<AddWindowScreen> {
                             countryState: _countryState,
                             address: _address,
                             numberAddress: _numberAddress,
-                            zipCode: _zipCode),
+                            zipCode: _zipCode
+                        ),
                         /* InfoPropertyFieldsForm(
                             firstPhone: _firstPhone,
                             secondaryPhone: _secondaryPhone,

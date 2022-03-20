@@ -31,6 +31,12 @@ class InfoPropertyFieldsForm extends StatefulWidget {
 
 class _InfoPropertyFieldsForm extends State<InfoPropertyFieldsForm> {
   bool _expanded = false;
+  final _controllerPhone = TextEditingController();
+  final _controllerSecondaryPhone = TextEditingController();
+  final _controllerTower = TextEditingController();
+  final _controllerDoorNumber = TextEditingController();
+  final _controllerContactName = TextEditingController();
+
 /*class InfoPropertyFieldsForm extends StatelessWidget {*/
   /*final String firstPhone;
   final String secondaryPhone;
@@ -62,9 +68,10 @@ class _InfoPropertyFieldsForm extends State<InfoPropertyFieldsForm> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormInput(
-          label: "Teléfono",
-          error: "Digite el Teléfono",
-          field: widget.firstPhone),
+        label: "Teléfono",
+        error: "Digite el Teléfono",
+        controller: _controllerPhone,
+      ),
       /*
       TextInput(
         label: "Teléfono",
@@ -84,7 +91,7 @@ class _InfoPropertyFieldsForm extends State<InfoPropertyFieldsForm> {
       child: TextFormInput(
           label: "Teléfono secundario",
           error: "",
-          field: widget.secondaryPhone),
+          controller: _controllerSecondaryPhone),
       /*
       TextInput(
         label: "Teléfono secundario",
@@ -102,7 +109,7 @@ class _InfoPropertyFieldsForm extends State<InfoPropertyFieldsForm> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormInput(
-          label: "Interior/Torre", error: "", field: widget.tower),
+          label: "Interior/Torre", error: "", controller: _controllerTower),
       /*TextInput(
         label: "Interior/Torre",
         hintText: "Digite el interior/torre",
@@ -126,7 +133,9 @@ class _InfoPropertyFieldsForm extends State<InfoPropertyFieldsForm> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormInput(
-          label: "Número del inmueble", error: "", field: widget.doorNumber),
+          label: "Número del inmueble",
+          error: "",
+          controller: _controllerDoorNumber),
       /*TextInput(
         label: "Número del inmueble",
         hintText: "Digite el número del inmueble",
@@ -143,7 +152,9 @@ class _InfoPropertyFieldsForm extends State<InfoPropertyFieldsForm> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormInput(
-          label: "Nombre del contacto", error: "", field: widget.contactName),
+          label: "Nombre del contacto",
+          error: "",
+          controller: _controllerContactName),
       /*
       TextInput(
         label: "Nombre del contacto",

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TextFormInput extends StatelessWidget {
-  late String field;
   final String label;
   final String error;
   final TextInputType keyboardType;
+  final TextEditingController controller;
 
   TextFormInput(
       {Key? key,
-      required this.field,
+      required this.controller,
       required this.label,
       required this.error,
       this.keyboardType = TextInputType.text})
@@ -17,13 +17,14 @@ class TextFormInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         labelText: label,
         filled: true,
         fillColor: const Color(0xFFFFFFFF),
         border: InputBorder.none,
         //TODO: make a constant in order to not repeat
-        focusedErrorBorder:  const OutlineInputBorder(
+        focusedErrorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFF3483FA)),
             borderRadius: BorderRadius.all(Radius.circular(8.0))),
         errorBorder: const OutlineInputBorder(
@@ -51,8 +52,7 @@ class TextFormInput extends StatelessWidget {
         return null;
       },*/
       onSaved: (value) {
-        print("this=> $field");
-        field = value!;
+        print("this=> $value");
       },
     );
   }

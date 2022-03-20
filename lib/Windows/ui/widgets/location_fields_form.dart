@@ -10,7 +10,11 @@ class LocationFieldsForm extends StatelessWidget {
   final String numberAddress;
   final String zipCode;
 
-  const LocationFieldsForm({
+  final _controllerAddress = TextEditingController();
+  final _controllerNumberAddress = TextEditingController();
+  final _controllerZipCode = TextEditingController();
+
+  LocationFieldsForm({
     Key? key,
     required this.countryState,
     required this.address,
@@ -32,7 +36,7 @@ class LocationFieldsForm extends StatelessWidget {
       child: TextFormInput(
           label: "Dirección del inmueble",
           error: "Digite la dirección del inmueble",
-          field: address),
+          controller: _controllerAddress),
       /*
       TextInput(
         label: "Dirección del inmueble",
@@ -52,7 +56,7 @@ class LocationFieldsForm extends StatelessWidget {
           label: "Número de calle",
           error: "Digite el número de calle del inmueble",
           keyboardType: TextInputType.streetAddress,
-          field: numberAddress),
+          controller: _controllerNumberAddress),
       /*
       TextInput(
         label: "Número de calle",
@@ -73,7 +77,7 @@ class LocationFieldsForm extends StatelessWidget {
           label: "Código Postal",
           error: "Digite el código postal",
           keyboardType: TextInputType.number,
-          field: zipCode),
+          controller: _controllerZipCode),
       /*
       TextInput(
         label: "Código Postal",
