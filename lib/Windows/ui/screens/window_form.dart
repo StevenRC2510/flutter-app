@@ -18,30 +18,36 @@ class AddWindowScreen extends StatefulWidget {
 }
 
 class _AddWindowScreen extends State<AddWindowScreen> {
-  late final String _countryState = "",
-      _address = "",
-      _numberAddress = "",
-      _zipCode = "",
-      _firstPhone = "",
-      _secondaryPhone = "",
-      _tower = "",
-      _floor = "",
-      _doorNumber = "",
-      _contactName = "";
-/*
-  late final String _countryState = "";
-  late final String _address = "";
-  late final String _numberAddress = "";
-  late final String _zipCode = "";
-  late final String _firstPhone = "";
-  late final String _secondaryPhone = "";
-  late final String _tower = "";
-  late final String _floor = "";
-  late final String _doorNumber = "";
-  late final String _contactName = "";*/
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late String _email, _password;
   final List<Widget> _propertyInfoList = [];
+  final List<Widget> _propertyInfoList1 = [];
+
+  final controllerAddress = TextEditingController();
+  final controllerNumberAddress = TextEditingController();
+  final controllerZipCode = TextEditingController();
+
+  final controllerFirstPhone = TextEditingController();
+  final controllerSecondaryPhone = TextEditingController();
+  final controllerTower = TextEditingController();
+  final controllerFloor = TextEditingController();
+  final controllerDoorNumber = TextEditingController();
+  final controllerContactName = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _propertyInfoList1.add(new InfoPropertyFieldsForm(
+        controllerFirstPhone: controllerFirstPhone,
+        controllerSecondaryPhone: controllerSecondaryPhone,
+        controllerTower: controllerTower,
+        controllerFloor: controllerFloor,
+        controllerDoorNumber: controllerDoorNumber,
+        controllerContactName: controllerContactName,
+      ));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,155 +58,72 @@ class _AddWindowScreen extends State<AddWindowScreen> {
 
     void _addCardWidget() {
       setState(() {
-        _propertyInfoList.add(LocationFieldsForm(
-            countryState: _countryState,
-            address: _address,
-            numberAddress: _numberAddress,
-            zipCode: _zipCode));
+        _propertyInfoList1.add(new InfoPropertyFieldsForm(
+          controllerFirstPhone: controllerFirstPhone,
+          controllerSecondaryPhone: controllerSecondaryPhone,
+          controllerTower: controllerTower,
+          controllerFloor: controllerFloor,
+          controllerDoorNumber: controllerDoorNumber,
+          controllerContactName: controllerContactName,
+        ));
       });
     }
 
     void _onSubmit() {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
-        print(_address);
-        print(_numberAddress);
-        print(_zipCode);
+        final text1 = controllerAddress.text;
+        final text2 = controllerNumberAddress.text;
+
+        print("phoneeeee => $controllerFirstPhone");
+
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Processing Data: $_address => $_email => $_password')),
+          SnackBar(content: Text('Processing Data: => $text1 => $text2')),
         );
       }
     }
 
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              HeaderGradient(height: 100.0),
-              const Text(
-                "Crear inmueble",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30.0,
-                    fontFamily: "Lato",
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          Container(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(labelText: 'Email:'),
-                          onSaved: (input) => _email = input!,
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(labelText: 'Password:'),
-                          onSaved: (input) => _password = input!,
-                          obscureText: true,
-                        ),
-                        LocationFieldsForm(
-                            countryState: _countryState,
-                            address: _address,
-                            numberAddress: _numberAddress,
-                            zipCode: _zipCode
-                        ),
-                        /* InfoPropertyFieldsForm(
-                            firstPhone: _firstPhone,
-                            secondaryPhone: _secondaryPhone,
-                            tower: _tower,
-                            floor: _floor,
-                            doorNumber: _doorNumber,
-                            contactName: _contactName),
-                        /**/
-                        _buildAddress(),*/
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: ElevatedButton(
-                            onPressed: () => _onSubmit(),
-                            child: const Text('First Submit'),
-                            style: ElevatedButton.styleFrom(
-                                primary: const Color(0xFF7C01FF),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 50, vertical: 5),
-                                textStyle: const TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                        /*
-                        Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Container(
-                              width: 300.0,
-                              height: 50.0,
-                              child: RaisedButton(
-                                color: const Color(0xFF7C01FF),
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    _formKey.currentState!.save();
-
-                                    Scaffold.of(context).showSnackBar(SnackBar(
-                                        content: Text(
-                                            'Email: $_address and Password $_zipCode')));
-                                    print(_formKey.currentState);
-                                  }
-                                },
-                                child: const Text(
-                                  'Submit',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    side: const BorderSide(
-                                        color: Colors.deepPurpleAccent)),
-                              ),
-                            )),*/
-                      ],
-                    )),
-                FloatingActionButton(
-                  onPressed: _addCardWidget,
-                  tooltip: 'Add',
-                  child: Icon(Icons.add),
-                ),
-                /*
-                const Dropdown(label: "Estado"),
-                TextInput(
-                  label: "Dirección del inmueble",
-                  hintText: "ingresa la dirección del inmueble",
-                  inputType: TextInputType.text,
-                  maxLines: 1,
-                  controller: _controllerTitlePlace,
-                ),
-                TextInput(
-                  label: "Número de calle",
-                  hintText: "ingresa el numero de calle del inmueble",
-                  inputType: TextInputType.text,
-                  maxLines: 1,
-                  controller: _controllerTitlePlace,
-                ),
-                TextInput(
-                  label: "Código Postal",
-                  hintText: "ingresa el código postal",
-                  inputType: TextInputType.text,
-                  maxLines: 1,
-                  controller: _controllerTitlePlace,
-                ),
-                TextInput(
-                  //Description
-                  hintText: "Description",
-                  inputType: TextInputType.multiline,
-                  maxLines: 4,
-                  controller: _controllerDescriptionPlace,
-                ),*/
-                Container(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            HeaderGradient(height: 100.0),
+            const Text(
+              "Crear inmueble",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30.0,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        Container(
+          padding: const EdgeInsets.all(20.0),
+          child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  LocationFieldsForm(
+                      controllerAddress: controllerAddress,
+                      controllerNumberAddress: controllerNumberAddress,
+                      controllerZipCode: controllerZipCode),
+                  SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                        itemCount: _propertyInfoList1.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return _propertyInfoList1[index];
+                        }),
+                  ),
+                  FloatingActionButton(
+                    onPressed: _addCardWidget,
+                    tooltip: 'Add',
+                    child: Icon(Icons.add),
+                  ),
+                  Container(
                     alignment: Alignment.center,
                     child: Button(
                         text: "Enviar",
@@ -208,12 +131,12 @@ class _AddWindowScreen extends State<AddWindowScreen> {
                         width: 300.0,
                         height: 50.0,
                         color: const Color(0xFF7C01FF),
-                        textColor: Colors.white))
-              ],
-            ),
-          ),
-        ],
-      ),
+                        textColor: Colors.white),
+                  )
+                ],
+              )),
+        ),
+      ],
     );
   }
 }
